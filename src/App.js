@@ -1,24 +1,47 @@
-import logo from './logo.svg';
+
+import { useState } from 'react';
+import { useRef } from 'react';
 import './App.css';
 
 function App() {
+  const name = useRef();
+  const date = useRef();
+  const [Location, setLocation] = useState("karachi")
+
+  const submit = (e) => {
+    e.preventDefault()
+    console.log(name.current.value)
+    console.log(date.current.value)
+    console.log(Location);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <form onSubmit={submit}>
+        <label>
+          Name: <input type={"text"} ref={name} />
+        </label>
+        <br />
+        <br />
+        <label>
+          Date : <input type={"date"} ref={date} />
+        </label>
+
+        <br />
+        <br />
+        <label>
+          Location  <select onChange={(e) => setLocation(e.target.value)}>
+            <option value="karachi">Karachi</option>
+            <option value="lahore">lahore</option>
+            <option value="Abbottabad">Abbottabad</option>
+
+          </select>
+        </label>
+
+        <br />
+        <br />
+        <button type={"submit"}>submit</button>
+      </form>
+    </>
   );
 }
 
